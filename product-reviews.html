@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<!--  Product Reviews List -->
+<ul>
+	<h4>Reviews</h4>
+	<li ng-repeat="reviews in product.reviews">
+	<blockquote>
+		<strong> {{ reviews.stars }} Stars</strong>
+			{{reviews.body}}
+			<cite class="clearfix">{{reviews.author}}</cite>
+	</blockquote>
+	</li>
+</ul>
+
+<!-- Review form-->
+<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+	<!-- Live review -->
+	<blockquote>
+		<strong>{{reviewCtrl.reviews.stars}} Stars</strong>
+		{{reviewCtrl.reviews.body}}
+		<cite class="clearfix">-{{reviewCtrl.reviews.author}}</cite>
+	</blockquote>
+
+	<!-- Review form -->
+	<h4>Submit a review</h4>
+	<fieldset class="form-group">
+		<select class="form-control" ng-model="reviewCtrl.reviews.stars" ng-options="stars for stars in [5,4,3,2,1]" title="Stars" required="">
+			<option value="">Rate the Product</option>
+		</select>
+	</fieldset>
+
+	<fieldset class="form-group">
+		<textarea class="form-control" ng-model="reviewCtrl.reviews.body" placeholder="Write a short review of product..." title="Review"></textarea>
+	</fieldset>
+
+	<fieldset class="form-group">
+		<input type="email" class="form-control" ng-model="reviewCtrl.reviews.author" placeholder="joe@example.org" title="Email" required="" />
+	</fieldset>
+
+	<fieldset class="form-group">
+		<input type="submit" class="btn btn-primary pull-right" value="Submit review"/>
+	</fieldset>
+</form>
+</body>
+</html>
