@@ -8,8 +8,8 @@
 	    $http.get('storeProducts.json').then(function(data) {
 	    	store.products = data.data;
     		var loc = localStorage.getItem('review');
-      		loc = JSON.parse(loc);
-      		store.products[0].reviews = loc;
+      		var loc = JSON.parse(loc) || [];
+      		var sav = store.products[0].reviews = loc;
       		angular.forEach(loc, function(value, key) {
 			  console.log(value);
 			});
@@ -24,7 +24,7 @@
 	    //this.reviews = {};
 	    this.addReview = function(product) {
 	      	product.reviews.push(this.reviews);
-	      	var sLoc = localStorage.setItem('review', JSON.stringify(product.reviews));
+	      	localStorage.setItem('review', JSON.stringify(product.reviews));
 	      	this.reviews = {};
 		};
 	});
