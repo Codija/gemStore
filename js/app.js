@@ -9,7 +9,7 @@
 	    	store.products = data.data;
     		var loc = localStorage.getItem('review');
       		loc = JSON.parse(loc);
-      		store.products[0].reviews = loc;
+      		var sav = store.products[0].reviews = loc;
       		angular.forEach(loc, function(value, key) {
 			  console.log(value);
 			});
