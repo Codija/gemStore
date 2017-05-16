@@ -1,6 +1,15 @@
 (function() {
 	var app = angular.module('gemStore', ['store-directives']);
 	
+	app.controller('ReviewController', function() {
+	    //this.reviews = {};
+	    this.addReview = function(product) {
+	      	product.reviews.push(this.reviews);
+	      	var sLoc = localStorage.setItem('review', JSON.stringify(product.reviews));
+	      	this.reviews = {};
+		};
+	});
+	
 	app.controller('StoreController', ['$scope', '$http', function($scope, $http){
 	    var store = this;
 	    store.products = [];
@@ -19,13 +28,4 @@
 	    });
 
 	}]);
-
-	app.controller('ReviewController', function() {
-	    //this.reviews = {};
-	    this.addReview = function(product) {
-	      	product.reviews.push(this.reviews);
-	      	var sLoc = localStorage.setItem('review', JSON.stringify(product.reviews));
-	      	this.reviews = {};
-		};
-	});
 }());
