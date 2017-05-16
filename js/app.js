@@ -8,7 +8,7 @@
 	    $http.get('storeProducts.json').then(function(data) {
 	    	store.products = data.data;
     		var loc = localStorage.getItem('review');
-      		var loc = JSON.parse(loc) || [];
+      		loc = JSON.parse(loc) || [];
       		var sav = store.products[0].reviews = loc;
       		angular.forEach(loc, function(value, key) {
 			  console.log(value);
