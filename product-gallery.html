@@ -1,8 +1,8 @@
 <div class="gallery text-center" ng-show="product.images.length">
 	<img ng-src="{{ product.images[gallery.current ]}}"/>
 	<ul class="list-iniline thumbs clearfix">
-		<li class="thumbnail" ng-repeat="image in product.images">
+		<li class="thumbnail" ng-repeat="image in product.images track by $index" ng-click="gallery.setCurrent($index)">
 			<img ng-src="{{image}}" />
-		</li>	
+		</li>
 	</ul>
 </div>

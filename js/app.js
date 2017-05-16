@@ -1,24 +1,31 @@
 (function() {
 	var app = angular.module('gemStore', ['store-directives']);
 	
-	app.controller('StoreController', ['$http', function($http){
+	app.controller('StoreController', ['$scope', '$http', function($scope, $http){
 	    var store = this;
 	    store.products = [];
+	    this.reviews = {};
 	    $http.get('storeProducts.json').then(function(data) {
 	    	store.products = data.data;
-	    	console.log(store.products);
+    		var loc = localStorage.getItem('review');
+      		loc = JSON.parse(loc);
+      		store.products[0].reviews = loc;
+      		angular.forEach(loc, function(value, key) {
+			  console.log(value);
+			});
+	    	console.log(loc);
 	    }, function(error){
 	    	console.log(error);
 	    });
+
 	}]);
 
 	app.controller('ReviewController', function() {
-	    this.reviews = {};
-
+	    //this.reviews = {};
 	    this.addReview = function(product) {
 	      	product.reviews.push(this.reviews);
-
+	      	var sLoc = localStorage.setItem('review', JSON.stringify(product.reviews));
 	      	this.reviews = {};
-	    };
+		};
 	});
 }());
